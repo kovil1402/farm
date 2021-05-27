@@ -1,6 +1,5 @@
 <?php
 
-use Farm\AnimalFactory;
 
 include_once realpath("vendor/autoload.php");
 
@@ -8,11 +7,11 @@ include_once realpath("vendor/autoload.php");
 $barn = new Farm\Barn();
 $farm = new Farm\Farm($barn);
 for ($chickens = 20; $chickens > 0; $chickens--) {
-    $newChicken = AnimalFactory::createChicken();
+    $newChicken = Farm\AnimalFactory::createChicken();
     $farm->processObject($newChicken);
 }
 for ($cows = 10; $cows > 0; $cows--) {
-    $newCow = AnimalFactory::createCow();
+    $newCow = Farm\AnimalFactory::createCow();
     $farm->processObject($newCow);
 }
 
@@ -20,6 +19,6 @@ $farm->getProducts();
 
 // Возможность добавить курицу на ферму
 
-$newChicken = AnimalFactory::createChicken();
+$newChicken = Farm\AnimalFactory::createChicken();
 
 $farm->processObject($newChicken);
