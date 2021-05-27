@@ -11,7 +11,7 @@ class Farm
 
     private $products = [];
 
-
+    // Получаем продукты от животных находящехся в barn и помещаем их в $products
     public function setProducts()
     {
         foreach ($this->barn->getContent() as $animal) {
@@ -24,7 +24,7 @@ class Farm
             }
         }
     }
-
+    //Выводим текущие значения $products
     public function displayProducts()
     {
         foreach ($this->products as $key => $value) {
@@ -32,7 +32,7 @@ class Farm
         }
     }
 
-
+    //Добавляем Id животных из barn в миссив $animalIds
     public function setAnimalIds()
     {
         foreach ($this->barn->getContent() as $animal) {
