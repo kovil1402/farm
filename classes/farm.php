@@ -1,5 +1,5 @@
 <?php
-class Farm
+class Farm implements Business
 {
     public function __construct($barn)
     {
