@@ -1,28 +1,30 @@
 <?php
 
-class Cow implements Animal
+namespace Farm;
+
+class Cow extends Animal
 {
+    private $id;
 
-    public function __construct()
-    {
-        $this->id = $this->setId();
-    }
-
-    public $id;
+    private $productType = 'milk';
 
     public function getProducts()
     {
-        $product_amount = mt_rand(8, 12);
-        $output = ['milk' => "$product_amount"];
+        $output = mt_rand(8, 12);
+
         return $output;
     }
 
-    public function setId()
-    {
-        return uniqid('id_', true);
-    }
     public function getId()
     {
         return $this->id;
+    }
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+    public function getProductType()
+    {
+        return $this->productType;
     }
 }

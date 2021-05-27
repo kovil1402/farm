@@ -1,42 +1,41 @@
 <?php
-class Farm implements Business
+
+namespace Farm;
+
+
+class Farm
 {
     public function __construct($barn)
     {
         $this->barn = $barn;
-        $this->setAnimalIds();
-        $this->setProducts();
     }
-    private $animalIds = [];
-
-    private $products = [];
-
-    // Получаем продукты от животных находящехся в barn и помещаем их в $products
-    public function setProducts()
+    public function createId()
     {
-        foreach ($this->barn->getContent() as $animal) {
-            foreach ($animal->getProducts() as $key => $value) {
-                if (isset($this->products[$key])) {
-                    $this->products[$key] += $value;
-                } else {
-                    $this->products[$key] = $value;
-                }
+        return uniqid('id_', true);
+    }
+
+    public function processObject($object)
+    {
+        $id = $this->createId();
+        $object->setId($id);
+        $this->barn->addContent($id, $object);
+    }
+
+    //Выводим текущие значения $products
+    public function getProducts()
+    {
+        $output = [];
+        foreach ($this->barn->getContent() as $value) {
+            $amount = $value->getProducts();
+            $type = $value->getProductType();
+            if (!isset($output[$type])) {
+                $output[$type] = $amount;
+            } else {
+                $output[$type] += $amount;
             }
         }
-    }
-    //Выводим текущие значения $products
-    public function displayProducts()
-    {
-        foreach ($this->products as $key => $value) {
-            echo $key . ' = ' . $value . '<br>';
+        foreach ($output as $key => $value) {
+            echo 'Collected ' . $value . " $key" . '<br>';
         }
-    }
-
-    //Добавляем Id животных из barn в миссив $animalIds
-    public function setAnimalIds()
-    {
-        foreach ($this->barn->getContent() as $animal) {
-            $this->animalIds[] = $animal->getId();
-        };
     }
 }

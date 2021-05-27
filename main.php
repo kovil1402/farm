@@ -1,12 +1,25 @@
 <?php
 
-include_once "autoloader.php";
+use Farm\AnimalFactory;
 
-function createFarm($chickens, $cows)
-{
-    $barn = new Barn($chickens, $cows);
-    $farm = new Farm($barn);
+include_once realpath("vendor/autoload.php");
 
-    $farm->displayProducts();
+// Ферма выдает продукты при 20 курицах и 10 коровах
+$barn = new Farm\Barn();
+$farm = new Farm\Farm($barn);
+for ($chickens = 20; $chickens > 0; $chickens--) {
+    $newChicken = AnimalFactory::createChicken();
+    $farm->processObject($newChicken);
 }
-createFarm(20, 10);
+for ($cows = 10; $cows > 0; $cows--) {
+    $newCow = AnimalFactory::createCow();
+    $farm->processObject($newCow);
+}
+
+$farm->getProducts();
+
+// Возможность добавить курицу на ферму
+
+$newChicken = AnimalFactory::createChicken();
+
+$farm->processObject($newChicken);

@@ -1,8 +1,10 @@
 <?php
 
+namespace Farm;
+
 interface Business
 {
-    public function setProducts();
+    public function getProducts();
 
-    public function displayProducts();
+    public function processObject($object);
 }

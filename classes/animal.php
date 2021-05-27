@@ -1,7 +1,11 @@
 <?php
-interface Animal
+
+namespace Farm;
+
+abstract class Animal
 {
-    public function getProducts();
-    public function getId();
-    public function setId();
+    private $id;
+    public abstract function getProducts();
+    public abstract function setId($id);
+    public abstract function getId();
 }
