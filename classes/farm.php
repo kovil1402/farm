@@ -14,7 +14,7 @@ class Farm
 
     public function setProducts()
     {
-        foreach ($this->barn->getAnimals() as $animal) {
+        foreach ($this->barn->getContent() as $animal) {
             foreach ($animal->getProducts() as $key => $value) {
                 if (isset($this->products[$key])) {
                     $this->products[$key] += $value;
@@ -35,7 +35,7 @@ class Farm
 
     public function setAnimalIds()
     {
-        foreach ($this->barn->getAnimals() as $animal) {
+        foreach ($this->barn->getContent() as $animal) {
             $this->animalIds[] = $animal->getId();
         };
     }

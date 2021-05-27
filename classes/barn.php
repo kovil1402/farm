@@ -1,8 +1,8 @@
 <?php
 
-class Barn
+class Barn extends Container
 {
-    private $animals = [];
+    private $content = [];
 
     public function __construct($chickens, $cows)
     {
@@ -10,21 +10,21 @@ class Barn
         $this->addCows($cows);
     }
 
-    public function getAnimals()
+    public function getContent()
     {
-        return $this->animals;
+        return $this->content;
     }
 
     public function addChickens($chickens = 1)
     {
         for ($chickens; $chickens > 0; $chickens--) {
-            $this->animals[] = new Chicken;
+            $this->content[] = new Chicken;
         }
     }
     public function addCows($cows = 1)
     {
         for ($cows; $cows > 0; $cows--) {
-            $this->animals[] = new Cow;
+            $this->content[] = new Cow;
         }
     }
 }
